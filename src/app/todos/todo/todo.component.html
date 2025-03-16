@@ -1,0 +1,18 @@
+
+  <mat-card class="example-card" appearance="outlined">
+    <mat-card-header class="flex justify-between">
+      <mat-card-title><p class="font-semibold text-slate-700">{{task.titulo}}</p></mat-card-title>
+      <p [ngClass]="{'bg-green-500 py-2 px-4 rounded': task.isComplete, 'bg-orange-500 py-2 px-3 rounded': !task.isComplete}">{{task.estado}}</p>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{task.descripcion}}</p>
+    </mat-card-content>
+    <mat-card-footer class="example-card-footer">
+      <div aria-label="Chihuahua traits" class="btn-group">
+        <button mat-flat-button [disabled]="task.isComplete" class="btn-rounded" (click)="processTask(task.id)">Procesar</button>
+        <button mat-flat-button [disabled]="task.isComplete" class="btn-color btn-rounded" (click)="editTask()">Editar</button>
+        <button mat-flat-button class="btn-color-red btn-rounded" (click)="deleteTask(task.id)">Eliminar</button>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+

@@ -1,0 +1,85 @@
+<div mat-dialog-title>
+  <h1>{{getTitle()}} Usuario</h1>
+</div>
+<form [formGroup]="userForm" (submit)="onSubmitUser()">
+  <div mat-dialog-content>
+   <div class="row">
+     <p *ngIf="userFormControls.userName && userFormControls.userName.invalid && userFormControls.userName.touched">
+       <span *ngIf="userFormControls.userName.errors?.['required']" class="text-red-500">El Usuario es obligatorio</span>
+       <span *ngIf="userFormControls.userName.errors?.['minlength']" class="text-red-500">Debe tener al menos 3 caracteres</span>
+     </p>
+    <mat-form-field appearance="fill" class="w-full">
+        <mat-label>
+          Usuario
+        </mat-label>
+        <input matInput type="text" formControlName="userName">
+      </mat-form-field>
+    </div>
+    <p *ngIf="userFormControls.name && userFormControls.name.invalid && userFormControls.name.touched">
+      <span *ngIf="userFormControls.name.errors?.['required']" class="text-red-500">El nombre es obligatorio</span>
+      <span *ngIf="userFormControls.name.errors?.['minlength']" class="text-red-500">Debe tener al menos 3 caracteres</span>
+    </p>
+   <div class="row">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>
+        Nombre
+      </mat-label>
+        <input matInput type="text" formControlName="name">
+    </mat-form-field>
+   </div>
+   <p *ngIf="userFormControls.lastName && userFormControls.lastName.invalid && userFormControls.lastName.touched">
+    <span *ngIf="userFormControls.lastName.errors?.['required']" class="text-red-500">El nombre es obligatorio</span>
+    <span *ngIf="userFormControls.lastName.errors?.['minlength']" class="text-red-500">Debe tener al menos 3 caracteres</span>
+  </p>
+   <div class="row">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>
+        Apellidos
+      </mat-label>
+        <input matInput type="text" formControlName="lastName">
+    </mat-form-field>
+   </div>
+   <p *ngIf="userFormControls.password && userFormControls.password.invalid && userFormControls.password.touched">
+    <span *ngIf="userFormControls.password.errors?.['required']" class="text-red-500">La contraseña es obligatoria</span>
+  </p>
+  <div class="row">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>
+        Contraseña
+      </mat-label>
+        <input matInput type="text" formControlName="password">
+    </mat-form-field>
+   </div>
+   <p *ngIf="userFormControls.confirmPassword && userFormControls.confirmPassword.invalid && userFormControls.confirmPassword.touched">
+    <span *ngIf="userFormControls.confirmPassword.errors?.['required']" class="text-red-500">La contraseña es obligatoria</span>
+  </p>
+  <p>
+    <span *ngIf="userForm.hasError('mismatch') && userFormControls.confirmPassword.touched" class="text-red-500">La contraseña no coincide.</span>
+  </p>
+  <div class="row">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>
+        Confirmar contaseña
+      </mat-label>
+        <input matInput type="text" formControlName="confirmPassword">
+    </mat-form-field>
+   </div>
+   <p *ngIf="userFormControls.email && userFormControls.email.invalid && userFormControls.email.touched">
+    <span *ngIf="userFormControls.email.errors?.['required']" class="text-red-500">El nombre es obligatorio</span>
+    <span *ngIf="userFormControls.email.errors?.['email']" class="text-red-500">Formato de correo no valido</span>
+  </p>
+  <div class="row">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>
+        Correo
+      </mat-label>
+        <input matInput type="text" formControlName="email">
+    </mat-form-field>
+   </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="false" (click)="onNoClick()">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="!userForm.valid" [ngClass]="{'btn-accept':userForm.valid}" type="submit">{{getTitle()}}</button>
+  </div>
+</form>
+

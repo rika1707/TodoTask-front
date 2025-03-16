@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+/* 🎨 Definir variables de colores en modo claro */
+@import "tailwindcss";
+
+html {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+/* 🌙 Definir colores en modo oscuro */
+@media (prefers-color-scheme: dark) {
+  html {
+    --background-color: #121212;
+    --text-color: #ffffff;
+  }
+}
+
+/* Aplicar los estilos */
+body {
+  height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: all 0.3s ease-in-out;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

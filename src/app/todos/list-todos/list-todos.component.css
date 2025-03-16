@@ -1,0 +1,7 @@
+button.btn-cls{
+  position: absolute;
+  background-color: rgba(132, 132, 134, 0.4);
+  top: 10px;
+  right: 10px;
+  color: white;
+}

@@ -1,0 +1,36 @@
+<div mat-dialog-title>
+  <h1>{{getTitle()}} Tarea</h1>
+</div>
+<form [formGroup]="taskForm" (submit)="onSubmit()">
+  <div mat-dialog-content>
+    <p *ngIf="taskFormControls.titulo && taskFormControls.titulo.invalid && taskFormControls.titulo.touched">
+      <span *ngIf="taskFormControls.titulo.errors?.['required']" class="text-red-500">El titulo es obligatorio</span>
+      <span *ngIf="taskFormControls.titulo.errors?.['minlength']" class="text-red-500">Debe tener al menos 3 caracteres</span>
+    </p>
+   <div class="row">
+    <mat-form-field appearance="fill" class="w-full">
+        <mat-label>
+          Titulo
+        </mat-label>
+        <input matInput type="text" formControlName="titulo">
+    </mat-form-field>
+   </div>
+   <p *ngIf="taskFormControls.descripcion && taskFormControls.descripcion.invalid && taskFormControls.descripcion.touched">
+    <span *ngIf="taskFormControls.descripcion.errors?.['required']" class="text-red-500">El descripción es obligatorio</span>
+    <span *ngIf="taskFormControls.descripcion.errors?.['minlength']" class="text-red-500">Debe tener al menos 3 caracteres</span>
+  </p>
+   <div class="row">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>
+        Descripción
+      </mat-label>
+        <input matInput type="text" formControlName="descripcion">
+
+    </mat-form-field>
+   </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="false" (click)="onNoClick()">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="!taskForm.valid" [ngClass]="{'btn-accept':taskForm.valid}" type="submit">{{getTitle()}}</button>
+  </div>
+</form>

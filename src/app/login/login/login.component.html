@@ -1,0 +1,44 @@
+
+<div class="flex min-h-full flex-col justify-center items-center px-6 py-12 lg:px-8 bg-slate-800">
+  <div class=" bg-slate-600 w-120 px-6 py-1 rounded">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Iniciar Sesión</h2>
+    </div>
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6" [formGroup]="loginForm" (submit)="loginSesion()">
+        <div>
+          <label for="userName" class="block text-sm/6 font-medium text-white">Usuario</label>
+          <div class="mt-2">
+            <input type="text" name="userName" id="userName" autocomplete="userName" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" formControlName="userName">
+          </div>
+          <p *ngIf="userName && userName.invalid && userName.touched">
+            <span *ngIf="userName.errors?.['required']" class="text-red-500">El Usuario es obligatorio</span>
+            <span *ngIf="userName.errors?.['minlength']" class="text-red-500">Debe tener al menos 3 caracteres</span>
+          </p>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="password" class="block text-sm/6 font-medium text-white">Contraseña</label>
+          </div>
+          <div class="mt-2">
+            <input type="password" name="password" id="password" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" formControlName="password">
+          </div>
+          <p *ngIf="password && password?.invalid && password?.touched">
+            <span *ngIf="password?.errors?.['required']" class="text-red-500">La contrasenia es obligatoria</span>
+          </p>
+        </div>
+
+        <div>
+          <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Login</button>
+        </div>
+      </form>
+
+      <p class="mt-10 text-center text-sm/6 text-gray-300 pb-10">
+        No tienes cuenta?
+        <span class="font-semibold text-indigo-400 hover:text-indigo-500 cursor-pointer" (click)="registerUser()">Registrate</span>
+      </p>
+    </div>
+  </div>
+</div>
