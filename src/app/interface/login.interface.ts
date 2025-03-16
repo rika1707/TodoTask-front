@@ -1,9 +1,9 @@
 export interface ILoginResponse {
   exito:    boolean;
   message:  string;
-  id:       string;
-  userName: string;
-  token:    string;
+  id?:       string;
+  userName?: string;
+  token?:    string;
 }
 
 export interface IUser {

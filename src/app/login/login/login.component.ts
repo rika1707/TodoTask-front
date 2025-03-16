@@ -23,6 +23,7 @@ export class LoginComponent {
   private readonly _modalSvc = inject(ModalServiceService);
   private readonly _route = inject(Router);
   user!:ILoginResponse;
+  errorMessage!: string;
 
   ngOnInit() {
     this._buildForm();
@@ -47,7 +48,8 @@ export class LoginComponent {
           }
         },
         error: (error) => {
-          console.error(error);
+          console.log(error.error.message)
+          this.user = error.error;
         }
       })
     }

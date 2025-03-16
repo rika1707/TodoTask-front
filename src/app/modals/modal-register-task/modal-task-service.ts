@@ -6,6 +6,7 @@ import { ComponentType } from '@angular/cdk/portal';
 import { HttpClient } from '@angular/common/http';
 import { IUserResponse } from '../../interface/login.interface';
 import {MatDialog} from '@angular/material/dialog'
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class ModalTaskService {
 
   private readonly _http = inject(HttpClient)
 
-  tasknUrl = 'https://localhost:7134/api/task'
+  tasknUrl = `${environment.API_URL}/task`
   user = JSON.parse(localStorage.getItem('user') as string)
 
   notifyTaskCreated() {

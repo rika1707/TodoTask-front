@@ -2,7 +2,7 @@
 <div class="md:p-10 p-8 min-h-full bg-slate-800 relative">
   <button class="btn-cls" mat-raised-button type="button" (click)="logout()">Cerrar sesion</button>
   <h1 class="text-2xl font-bold text-center text-white"> HOLA {{user.userName|uppercase}}</h1>
-  <p class="text-center text-white">Tienes {{tasks.length}} tareas pendientes</p>
+  <p class="text-center text-white">Tienes {{tasks.length}} tareas listadas</p>
   <div class="flex justify-center mt-3">
     <button mat-raised-button color="primary" (click)="openDialog()">Agregar Tarea</button>
   </div>
