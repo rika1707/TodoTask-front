@@ -1,59 +1,99 @@
-# TodoTask
+# TodoTask Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+Este proyecto es una aplicación **Todo List** desarrollada en **Angular** utilizando el modelo **MVVM (Model-View-ViewModel)**. Incluye autenticación con inicio de sesión, protección de rutas, y está estilizada con **Angular Material** y **TailwindCSS**.
 
-## Development server
+## 🚀 Clonación del repositorio
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Para comenzar, clona el repositorio con el siguiente comando:
 
 ```bash
-ng generate component component-name
+  git clone https://github.com/rika1707/TodoTask-front.git
+  cd TodoTask-front
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
+
+## 📌 Instalación de dependencias
+
+Ejecuta el siguiente comando para instalar las dependencias necesarias:
 
 ```bash
-ng generate --help
+  npm install
 ```
 
-## Building
+---
 
-To build the project run:
+## 🏗️ Tecnologías utilizadas
+
+- **Angular 19** (Standalone API y arquitectura MVVM)
+- **Angular Material** (Componentes UI)
+- **TailwindCSS** (Estilos personalizados)
+- **RxJS** (Manejo de estados y eventos reactivos)
+- **Angular Router** (Navegación y protección de rutas)
+
+---
+
+## 🎨 Estilos con Angular Material y TailwindCSS
+
+El proyecto utiliza **Angular Material** para los componentes UI y **TailwindCSS** para la personalización de estilos.
+
+Para asegurarte de que TailwindCSS está correctamente configurado, revisa el archivo `tailwind.config.js` y ejecuta:
 
 ```bash
-ng build
+  npm run dev
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 🔐 Protección de rutas (AuthGuard)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+El proyecto incluye un **AuthGuard** para proteger rutas y redirigir a la pantalla de inicio de sesión si el usuario no está autenticado.
+
+### 📌 Ejemplo de `auth.guard.ts`
+
+```typescript
+import { CanActivateFn, Router } from '@angular/router';
+import { inject } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+
+export const authGuard: CanActivateFn = (route, state) => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  return authService.isAuthenticated() ? true : router.parseUrl('/login');
+};
+```
+
+### 📌 Implementación en rutas
+
+```typescript
+import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
+
+export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'tasks', loadChildren: () => import('./todos/list-todos.module').then(m => m.ListTodosModule), canActivate: [authGuard] },
+  { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
+  { path: '**', redirectTo: 'login' }
+];
+```
+
+Esto asegura que solo los usuarios autenticados puedan acceder a la sección de tareas.
+
+---
+
+## 🛠️ Ejecución del proyecto
+
+Para iniciar el servidor en modo desarrollo, ejecuta:
 
 ```bash
-ng test
+  ng serve
 ```
 
-## Running end-to-end tests
+El proyecto estará disponible en `http://localhost:4200/`.
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## 📌 Contribuciones
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Si deseas contribuir, realiza un **fork** del repositorio, crea una nueva rama y envía un **pull request** con tus mejoras.
